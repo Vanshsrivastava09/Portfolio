@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{{ name }} — Resume</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+:root{
+  --sidebar:#0f172a;
+  --sidebar-text:#e2e8f0;
+  --sidebar-muted:#94a3b8;
+  --accent:#6366f1;
+  --accent2:#22d3ee;
+  --main-bg:#ffffff;
+  --main-text:#1e293b;
+  --main-muted:#64748b;
+  --border:#e2e8f0;
+  --section:#f8fafc;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{font-size:15px}
+body{font-family:'Inter',sans-serif;background:#f1f5f9;color:var(--main-text);line-height:1.55;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+
+/* Page */
+.page{max-width:1000px;margin:2rem auto;background:var(--main-bg);box-shadow:0 25px 80px rgba(0,0,0,0.12);border-radius:16px;overflow:hidden;display:grid;grid-template-columns:300px 1fr;min-height:1120px}
+.page.single{grid-template-columns:1fr}
+
+/* Sidebar */
+.sidebar{background:var(--sidebar);color:var(--sidebar-text);padding:2.2rem 1.6rem;display:flex;flex-direction:column;gap:1.8rem}
+.profile{text-align:center}
+.avatar{width:110px;height:110px;border-radius:50%;object-fit:cover;border:3px solid var(--accent);margin-bottom:1rem}
+.profile h1{font-size:1.35rem;font-weight:800;letter-spacing:-0.02em;line-height:1.2}
+.profile .role{font-size:.82rem;color:var(--sidebar-muted);margin-top:.3rem;font-weight:500}
+
+.contact-group{display:flex;flex-direction:column;gap:.7rem}
+.contact-item{display:flex;align-items:center;gap:.7rem;font-size:.82rem;color:var(--sidebar-muted)}
+.contact-item i{width:18px;text-align:center;color:var(--accent2);font-size:.9rem}
+.contact-item a{color:var(--sidebar-text);transition:opacity .2s}
+.contact-item a:hover{opacity:.8}
+
+.section-title{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.12em;color:var(--accent2);margin-bottom:.9rem;display:flex;align-items:center;gap:.5rem}
+.section-title::after{content:'';flex:1;height:1px;background:rgba(148,163,184,0.15)}
+
+.skill-block{margin-bottom:.9rem}
+.skill-name{display:flex;justify-content:space-between;font-size:.82rem;margin-bottom:.3rem}
+.skill-name span:first-child{color:var(--sidebar-text);font-weight:500}
+.skill-name span:last-child{color:var(--sidebar-muted);font-size:.75rem}
+.skill-bar{height:5px;background:rgba(148,163,184,0.12);border-radius:3px;overflow:hidden}
+.skill-fill{height:100%;border-radius:3px;background:linear-gradient(90deg,var(--accent),var(--accent2));transition:width 1s ease}
+
+.edu-item{margin-bottom:1rem}
+.edu-degree{font-size:.85rem;font-weight:600;color:var(--sidebar-text);line-height:1.35}
+.edu-school{font-size:.78rem;color:var(--sidebar-muted);margin-top:.15rem}
+.edu-date{font-size:.72rem;color:var(--accent2);margin-top:.2rem;font-weight:500}
+
+.cert-item{margin-bottom:.7rem}
+.cert-name{font-size:.82rem;font-weight:600;color:var(--sidebar-text)}
+.cert-meta{font-size:.75rem;color:var(--sidebar-muted);margin-top:.1rem}
+
+.lang-item{display:flex;justify-content:space-between;align-items:center;padding:.35rem 0;border-bottom:1px solid rgba(148,163,184,0.08)}
+.lang-name{font-size:.85rem}
+.lang-level{font-size:.75rem;color:var(--sidebar-muted)}
+
+/* Main */
+.main{padding:2.2rem 2.2rem 2rem;display:flex;flex-direction:column;gap:1.6rem}
+
+.top-bar{display:none}
+
+.summary-text{color:var(--main-muted);font-size:.92rem;line-height:1.7}
+
+.main-section{}
+.main-header{display:flex;align-items:center;gap:.7rem;margin-bottom:.9rem}
+.main-header i{color:var(--accent);font-size:1rem}
+.main-header h2{font-size:.95rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--main-text)}
+.main-header::after{content:'';flex:1;height:1px;background:var(--border)}
+
+.project-card{background:var(--section);border:1px solid var(--border);border-radius:10px;padding:1.1rem 1.3rem;margin-bottom:.9rem;transition:all .25s ease}
+.project-card:hover{border-color:rgba(99,102,241,0.2);box-shadow:0 4px 16px rgba(0,0,0,0.04)}
+.project-header{display:flex;justify-content:space-between;align-items:flex-start;gap:1rem;margin-bottom:.35rem;flex-wrap:wrap}
+.project-title{font-size:1rem;font-weight:700;color:var(--main-text);line-height:1.3}
+.project-links{display:flex;gap:.4rem}
+.project-links a{width:28px;height:28px;display:flex;align-items:center;justify-content:center;border-radius:6px;background:#fff;border:1px solid var(--border);color:var(--main-muted);font-size:.8rem;transition:all .2s}
+.project-links a:hover{background:var(--accent);color:#fff;border-color:var(--accent)}
+.project-stack{font-size:.82rem;color:var(--accent);font-weight:600;margin-bottom:.5rem}
+.project-points{list-style:none}
+.project-points li{padding:.25rem 0 .25rem 1.1rem;color:var(--main-muted);font-size:.87rem;line-height:1.6;position:relative}
+.project-points li::before{content:'›';position:absolute;left:0;color:var(--accent);font-weight:800;font-size:1.1rem;line-height:1.3}
+
+.achievement-list{list-style:none}
+.achievement-list li{padding:.4rem 0 .4rem 1.3rem;color:var(--main-muted);font-size:.88rem;line-height:1.55;position:relative}
+.achievement-list li::before{content:'★';position:absolute;left:0;color:var(--accent);font-size:.75rem;top:.55rem}
+
+/* Print Button */
+.print-btn{position:fixed;bottom:2rem;right:2rem;background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;border:none;padding:1rem 1.6rem;border-radius:50px;font-size:.95rem;font-weight:600;cursor:pointer;box-shadow:0 8px 30px rgba(99,102,241,0.35);display:flex;align-items:center;gap:.6rem;transition:all .3s ease;z-index:1000}
+.print-btn:hover{transform:translateY(-3px);box-shadow:0 12px 40px rgba(99,102,241,0.45)}
+
+/* Print Styles */
+@media print{
+  body{background:#fff}
+  .page{margin:0;box-shadow:none;border-radius:0;max-width:100%;grid-template-columns:260px 1fr}
+  .print-btn{display:none!important}
+  .project-card{break-inside:avoid;margin-bottom:.6rem;padding:.9rem 1.1rem}
+  .main-section{break-inside:avoid}
+  .sidebar{break-inside:avoid}
+  a[href]::after{content:none!important}
+}
+
+/* Mobile */
+@media(max-width:800px){
+  .page{grid-template-columns:1fr;margin:0;border-radius:0}
+  .sidebar{padding:1.8rem}
+  .main{padding:1.8rem}
+  .profile{text-align:left;display:flex;align-items:center;gap:1.2rem}
+  .avatar{width:80px;height:80px;margin:0}
+  .profile h1{font-size:1.5rem}
+}
+@media(max-width:500px){
+  .page{display:block}
+  .profile{flex-direction:column;text-align:center}
+  .avatar{margin:0 auto}
+  .project-header{flex-direction:column}
+}
+</style>
+</head>
+<body>
+
+<div class="page">
+
+<!-- SIDEBAR -->
+<aside class="sidebar">
+
+  <div class="profile">
+    <img src="{{ avatar }}" alt="{{ name }}" class="avatar">
+    <h1>{{ name }}</h1>
+    <p class="role">{{ role }}</p>
+  </div>
+
+  <div class="contact-group">
+    <div class="section-title">Contact</div>
+    <div class="contact-item"><i class="fas fa-envelope"></i><a href="mailto:{{ email }}">{{ email }}</a></div>
+    <div class="contact-item"><i class="fas fa-phone"></i><a href="tel:{{ phone }}">{{ phone }}</a></div>
+    <div class="contact-item"><i class="fab fa-linkedin-in"></i><a href="{{ linkedin }}" target="_blank">linkedin.com/in/vanshsrivastava09</a></div>
+    <div class="contact-item"><i class="fab fa-github"></i><a href="{{ github }}" target="_blank">github.com/Vanshsrivastava09</a></div>
+    <div class="contact-item"><i class="fab fa-whatsapp"></i><a href="{{ whatsapp }}" target="_blank">WhatsApp Direct</a></div>
+    <div class="contact-item"><i class="fas fa-map-marker-alt"></i><span>{{ location }}</span></div>
+  </div>
+
+  <div>
+    <div class="section-title">Technical Skills</div>
+    <div class="skill-block">
+      <div class="skill-name"><span>Python</span><span>Advanced</span></div>
+      <div class="skill-bar"><div class="skill-fill" style="width:90%"></div></div>
+    </div>
+    <div class="skill-block">
+      <div class="skill-name"><span>SQL & Databases</span><span>Advanced</span></div>
+      <div class="skill-bar"><div class="skill-fill" style="width:85%"></div></div>
+    </div>
+    <div class="skill-block">
+      <div class="skill-name"><span>Data Analysis (Pandas, NumPy)</span><span>Advanced</span></div>
+      <div class="skill-bar"><div class="skill-fill" style="width:88%"></div></div>
+    </div>
+    <div class="skill-block">
+      <div class="skill-name"><span>Machine Learning</span><span>Intermediate</span></div>
+      <div class="skill-bar"><div class="skill-fill" style="width:75%"></div></div>
+    </div>
+    <div class="skill-block">
+      <div class="skill-name"><span>Data Visualization</span><span>Advanced</span></div>
+      <div class="skill-bar"><div class="skill-fill" style="width:85%"></div></div>
+    </div>
+    <div class="skill-block">
+      <div class="skill-name"><span>Streamlit & Flask</span><span>Intermediate</span></div>
+      <div class="skill-bar"><div class="skill-fill" style="width:70%"></div></div>
+    </div>
+    <div class="skill-block">
+      <div class="skill-name"><span>Git & GitHub</span><span>Intermediate</span></div>
+      <div class="skill-bar"><div class="skill-fill" style="width:72%"></div></div>
+    </div>
+  </div>
+
+  <div>
+    <div class="section-title">Education</div>
+    {% for edu in education %}
+    <div class="edu-item">
+      <div class="edu-degree">{{ edu.degree }}</div>
+      <div class="edu-school">{{ edu.school }}</div>
+      <div class="edu-date">{{ edu.duration }}</div>
+    </div>
+    {% endfor %}
+  </div>
+
+  <div>
+    <div class="section-title">Certifications</div>
+    {% for cert in certifications %}
+    <div class="cert-item">
+      <div class="cert-name">{{ cert.name }}</div>
+      <div class="cert-meta">{{ cert.issuer }} · {{ cert.date }}</div>
+    </div>
+    {% endfor %}
+  </div>
+
+  <div>
+    <div class="section-title">Languages</div>
+    <div class="lang-item"><span class="lang-name">English</span><span class="lang-level">Professional</span></div>
+    <div class="lang-item"><span class="lang-name">Hindi</span><span class="lang-level">Native</span></div>
+  </div>
+
+</aside>
+
+<!-- MAIN -->
+<main class="main">
+
+  <div class="main-section">
+    <div class="main-header"><i class="fas fa-user"></i><h2>Professional Summary</h2></div>
+    <p class="summary-text">{{ summary }}</p>
+  </div>
+
+  <div class="main-section">
+    <div class="main-header"><i class="fas fa-rocket"></i><h2>Featured Projects</h2></div>
+    {% for project in projects %}
+    <div class="project-card">
+      <div class="project-header">
+        <div class="project-title">{{ project.title }}</div>
+        <div class="project-links">
+          <a href="{{ project.github }}" target="_blank" title="View Code"><i class="fab fa-github"></i></a>
+          <a href="{{ project.link }}" target="_blank" title="Live Demo"><i class="fas fa-external-link-alt"></i></a>
+        </div>
+      </div>
+      <div class="project-stack">{{ project.stack }}</div>
+      <ul class="project-points">
+        {% for bullet in project.bullets %}
+        <li>{{ bullet }}</li>
+        {% endfor %}
+      </ul>
+    </div>
+    {% endfor %}
+  </div>
+
+  <div class="main-section">
+    <div class="main-header"><i class="fas fa-trophy"></i><h2>Achievements & Highlights</h2></div>
+    <ul class="achievement-list">
+      {% for achievement in achievements %}
+      <li>{{ achievement }}</li>
+      {% endfor %}
+    </ul>
+  </div>
+
+  <div class="main-section">
+    <div class="main-header"><i class="fas fa-layer-group"></i><h2>Skill Categories</h2></div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:.6rem 1.5rem">
+      {% for category, values in skills.items() %}
+      <div style="margin-bottom:.4rem">
+        <div style="font-size:.82rem;font-weight:600;color:var(--main-text);margin-bottom:.25rem">{{ category }}</div>
+        <div style="font-size:.8rem;color:var(--main-muted);line-height:1.5">{{ values|join(", ") }}</div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+
+</main>
+
+</div>
+
+<button class="print-btn" onclick="window.print()">
+  <i class="fas fa-print"></i> Print / Save as PDF
+</button>
+
+</body>
+</html>
