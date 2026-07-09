@@ -1,0 +1,210 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --marquee-duration: 36s;
+  --marquee-icon: 0.95rem;
+
+  color-scheme: dark;
+  font-family: var(--font-sans), ui-sans-serif, system-ui, -apple-system,
+    BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background-color: #cfe8ff;
+}
+
+/* ============================================================
+   DIAGONAL MARQUEE
+============================================================ */
+
+.diagonal-marquee-section{
+    position:relative;
+
+    width:100vw;
+
+    left:50%;
+
+    transform:translateX(-50%);
+
+    overflow:hidden;
+
+    margin:80px 0;
+}
+
+.diagonal-marquee-outer{
+
+    position:relative;
+
+    width:calc(100vw + 260px);
+
+    left:50%;
+
+    transform:translateX(-50%) rotate(-2.5deg);
+
+    background:#FFD166;
+
+    border-top:3px solid #000;
+    border-bottom:3px solid #000;
+
+    overflow:hidden;
+
+    padding:14px 0;
+
+}
+
+
+.diagonal-marquee{
+
+    overflow:hidden;
+
+}
+
+.diagonal-marquee-track{
+
+    display:flex;
+
+    width:max-content;
+
+    white-space:nowrap;
+
+    animation:marquee 35s linear infinite;
+}
+
+.diagonal-marquee:hover .diagonal-marquee-track {
+  animation-play-state: paused;
+}
+
+@keyframes marquee{
+
+    from{
+
+        transform:translateX(0);
+
+    }
+
+    to{
+
+        transform:translateX(-50%);
+
+    }
+
+}
+
+.diagonal-marquee-item{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    gap:12px;
+
+    padding-right:48px;
+
+    font-weight:800;
+
+    font-style:italic;
+
+    text-transform:uppercase;
+
+}
+
+.diagonal-marquee-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+/* ============================================================
+   RESPONSIVE
+============================================================ */
+
+@media (max-width: 768px) {
+  .diagonal-marquee-outer {
+    width: 160vw;
+    margin-left: -30vw;
+    transform: rotate(-1.6deg);
+  }
+
+  .diagonal-marquee-item {
+    font-size: 0.82rem;
+    padding-right: 2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .diagonal-marquee-item {
+    font-size: 0.72rem;
+    padding-right: 1.25rem;
+  }
+}
+
+/* ============================================================
+   GLOBALS
+============================================================ */
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: #cfe8ff;
+  color: #111111;
+  font-family: var(--font-sans), ui-sans-serif, system-ui, -apple-system,
+    BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background-image: radial-gradient(
+    circle at 20% 10%,
+    rgba(255, 255, 255, 0.55),
+    transparent 25%
+  );
+}
+
+html,
+body,
+#root {
+  min-height: 100%;
+}
+
+.font-display {
+  font-family: var(--font-display), Georgia, "Times New Roman", serif;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+::selection {
+  background: #ffd166;
+  color: #111;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
