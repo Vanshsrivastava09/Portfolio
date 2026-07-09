@@ -2,7 +2,7 @@
 
 A modern, interactive developer portfolio built with Next.js 14, TypeScript, and Tailwind CSS, featuring a bold neo-brutalist design, live GitHub stats, and a scrolling highlight marquee.
 
-**Live site:** (https://vansh-portfolio-el.vercel.app/)](#) <!-- replace with your actual Vercel URL -->
+**Live site:** https://vansh-portfolio-el.vercel.app/ <!-- replace with your actual Vercel URL -->
 
 ---
 
