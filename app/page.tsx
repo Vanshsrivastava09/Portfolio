@@ -38,7 +38,7 @@ const skills = [
 
 const projects = [
   {
-    title: 'NorthStar Pay',
+    title: 'Star Pay',
     accent: 'bg-[#ff6b6b]',
     stack: ['Python', 'FastAPI', 'PostgreSQL', 'SQLAlchemy', 'JWT', 'Docker'],
     bullets: [
@@ -47,8 +47,8 @@ const projects = [
       'Developed production-ready REST APIs with PostgreSQL integration and SQLAlchemy ORM.',
       'Containerized the application with Docker for a deployment-ready workflow.',
     ],
-    demo: 'https://github.com/Vanshsrivastava09',
-    repo: 'https://github.com/Vanshsrivastava09',
+    demo: 'https://star-pay.vercel.app/',
+    repo: 'https://github.com/Vanshsrivastava09/Star-Pay-Wallet-Simulator',
   },
   {
     title: 'AI-Powered IPL Analytics Platform',
@@ -60,8 +60,8 @@ const projects = [
       'Designed SQL-backed dashboards and interactive visualizations with Streamlit.',
       'Turned complex sports data into crisp insights for decision-making.',
     ],
-    demo: 'https://github.com/Vanshsrivastava09',
-    repo: 'https://github.com/Vanshsrivastava09',
+    demo: 'https://ipl-analytics-with-prediction.streamlit.app/',
+    repo: 'https://github.com/Vanshsrivastava09/Cricket-Analytics',
   },
   {
     title: 'E-Commerce Sales Analytics Dashboard',
@@ -73,8 +73,8 @@ const projects = [
       'Created interactive visuals that make business stories easy to read.',
       'Focused on clear reporting and product-ready analytics experiences.',
     ],
-    demo: 'https://github.com/Vanshsrivastava09',
-    repo: 'https://github.com/Vanshsrivastava09',
+    demo: 'https://ecommercesales-dashboard.streamlit.app/',
+    repo: 'https://github.com/Vanshsrivastava09/Ecommerce-Sales-Dashboard',
   },
 ];
 
